@@ -817,6 +817,7 @@
             Console.WriteLine(Sprite_selecter(12));
             Console.WriteLine(
              "Red maiden,pass me your needle and the little fella's weapon,ill' make em shine brighter than ever before");
+            Console.ReadKey();
             double[] new_damage = { 10, 10 };
             for (int i = 0; i <= 1; i++)
             {
@@ -907,7 +908,7 @@
             {
                 hitpoints[1] = 100;
             }
-
+            Console.ReadKey();
             return hitpoints;
         }
 
@@ -1114,6 +1115,10 @@
                                                                              @@     @@@");
             Console.WriteLine("This is Hornet.She is less durable then the knight,but she compensates with versatility.When she hits enemies she gains silk,silk can be used to both bind and cast silk skills");
             Console.ReadKey();
+            Console.WriteLine("The first area youll'visit on your jorney is Hallownest's Abandoned crossroads.");
+            Console.ReadKey();
+            Console.WriteLine("'As your party re-enters Hallownest theyre welcomed by the barredness of the abandoned Crossroads.What once was an hub for all resources entering Hallownest is nothing but an hollow shell of what it once was");
+            Console.ReadKey();
             bool[] strength = { false, false };
             bool[] quick_slash = { false, false };
             bool[] soul_catcher = { false, false };
@@ -1152,6 +1157,8 @@
             string[] sly_items = new string[3];
             int targetIndex = 0;
             int geo = 10;
+            int reward = 0;
+            bool anyAlive=false;
             while (end == false)
             {
                 win = false;
@@ -1311,7 +1318,7 @@
                             }
 
                             // --- 2. WIN CHECK ---
-                            bool anyAlive = false;
+                             anyAlive = false;
                             for (int i = 0; i < n_enemies_roller; i++)
                             {
                                 if (combat_hp[i] > 0) anyAlive = true;
@@ -1322,6 +1329,8 @@
                                 win = true;
                                 Console.WriteLine("Room Cleared!");
                                 geo += roll.Next(10, 30);
+                                Console.WriteLine("you now have" + geo + " geo");
+                                Console.ReadKey();
                                 break;
                             }
 
@@ -1341,7 +1350,8 @@
                                         {
                                             enemies[j] = "aspid_hatchling";
                                             combat_hp[j] = enemy_hp[2];
-                                            Console.WriteLine("Aspid Mother birthed a hatchling!");
+                                            Console.WriteLine(Sprite_selecter(0));    
+                                            Console.WriteLine("Aspid Mother birthed a hatchling in position " +j+1);
                                             birthed = true;
                                             break;
                                         }
@@ -1870,23 +1880,26 @@
                             }
 
                             // --- 2. WIN CHECK ---
-                            bool anyAlive = false;
+                             anyAlive = false;
                             for (int i = 0; i < n_enemies_roller; i++)
                             {
                                 if (combat_hp[i] > 0) anyAlive = true;
+                                reward = roll.Next(10, 30);
+                                Console.WriteLine("You have won the encounter, you've gained " + reward + " geo");
                             }
 
                             if (anyAlive == false)
                             {
                                 win = true;
-                                int reward = roll.Next(30, 60);
+                                reward = roll.Next(30, 60);
                                 if (greed[0] == true || greed[1] == true)
                                 {
                                     reward = (int)(reward * 1.5);
                                 }
 
                                 geo = geo + reward;
-                                Console.WriteLine("The crowd cheers! You gained " + reward + " Geo.");
+                                Console.WriteLine("The crowd cheers! You gained " + reward + " Geo.");                               
+                                Console.ReadKey();
                                 break;
                             }
 
